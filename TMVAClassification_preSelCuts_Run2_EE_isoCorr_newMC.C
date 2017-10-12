@@ -45,6 +45,7 @@
 #if not defined(__CINT__) || defined(__MAKECINT__)
 // needs to be included when makecint runs (ACLIC)
 #include "TMVA/Factory.h"
+#include "TMVA/DataLoader.h"
 #include "TMVA/Tools.h"
 #endif
 
@@ -98,48 +99,51 @@ void TMVAClassification_preSelCuts_Run2_EE_isoCorr_newMC( TString myMethodList =
    // --- Here the preparation phase begins
 
    // Create a ROOT output file where TMVA will store ntuples, histograms, etc.
-   TString outfileName( "HggPhotonID_80X_endcap.root" );
+   TString outfileName( "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/PhaseISummer17/CMSSW_9_2_3_patch2/July24_2017/HggPhotonID_92X_endcap_phoIso_Corr.root" );
    TFile* outputFile = TFile::Open( outfileName, "RECREATE" );
 
-   TMVA::Factory *factory = new TMVA::Factory( "HggPhoId_80X_endcap", outputFile, "!V:!Silent:Color:DrawProgressBar:Transformations=I;D;P;G,D:AnalysisType=Classification" );
-  
-   factory->AddVariable( "SCRawE", 'F' );  
-   factory->AddVariable( "r9", 'F' );
-   factory->AddVariable( "sigmaIetaIeta", 'F' );
-   factory->AddVariable( "etaWidth", 'F' );
-   factory->AddVariable( "phiWidth", 'F' );
-   factory->AddVariable( "covIEtaIPhi", 'F' ); 
-   factory->AddVariable( "s4", 'F' );
-   factory->AddVariable( "phoIso03", 'F' );
-   factory->AddVariable( "chgIsoWrtChosenVtx", 'F' );
-   factory->AddVariable( "chgIsoWrtWorstVtx", 'F' );
-   factory->AddVariable( "scEta", 'F' );
-   factory->AddVariable( "rho", 'F' );  
-   factory->AddVariable( "esEffSigmaRR", 'F' );
-   factory->AddVariable("esEnergy/SCRawE",'F');
+   TMVA::Factory *factory = new TMVA::Factory( "HggPhoId_92X_endcap", outputFile, "!V:!Silent:Color:DrawProgressBar:Transformations=I;D;P;G,D:AnalysisType=Classification" );
 
-   TString fname = "output_SinglePhoton_Train.root";
+   TMVA::DataLoader *dataloader = new TMVA::DataLoader("dataset");
+  
+   dataloader->AddVariable( "SCRawE", 'F' );  
+   dataloader->AddVariable( "r9", 'F' );
+   dataloader->AddVariable( "sigmaIetaIeta", 'F' );
+   dataloader->AddVariable( "etaWidth", 'F' );
+   dataloader->AddVariable( "phiWidth", 'F' );
+   dataloader->AddVariable( "covIEtaIPhi", 'F' ); 
+   dataloader->AddVariable( "s4", 'F' );
+   //dataloader->AddVariable( "phoIso03", 'F' );
+   dataloader->AddVariable( "isoPhoCorrMax2p5", 'F' );
+   dataloader->AddVariable( "chgIsoWrtChosenVtx", 'F' );
+   dataloader->AddVariable( "chgIsoWrtWorstVtx", 'F' );
+   dataloader->AddVariable( "scEta", 'F' );
+   dataloader->AddVariable( "rho", 'F' );  
+   dataloader->AddVariable( "esEffSigmaRR", 'F' );
+   dataloader->AddVariable("esEnergy/SCRawE",'F');
+
+   TString fname = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/PhaseISummer17/CMSSW_9_2_3_patch2/July24_2017/output_SinglePhoton_Train.root";
 
    TFile *input = TFile::Open( fname );                 
    TTree *signal     = (TTree*)input->Get("promptPhotons");     
    TTree *background = (TTree*)input->Get("fakePhotons");   
 
    // event-wise weights
-   factory->SetSignalWeightExpression( "weight*PtvsEtaWeight" );
-   factory->SetBackgroundWeightExpression( "weight" );
+   dataloader->SetSignalWeightExpression( "weight*PtvsEtaWeight" );
+   dataloader->SetBackgroundWeightExpression( "weight" );
 
-   factory->AddSignalTree( signal);
-   factory->AddBackgroundTree( background );
+   dataloader->AddSignalTree( signal);
+   dataloader->AddBackgroundTree( background );
 
    //endcaps:
    TCut mycuts = "abs(scEta)>1.5 && s4>-2 && s4<2";
    TCut mycutb = "abs(scEta)>1.5 && s4>-2 && s4<2";
 
 
-   factory->PrepareTrainingAndTestTree( mycuts, mycutb,
+   dataloader->PrepareTrainingAndTestTree( mycuts, mycutb,
                                         "nTrain_Signal=0:nTrain_Background=0:SplitMode=Random:NormMode=EqualNumEvents:!V" ); //NumEvents
 
-   factory->BookMethod( TMVA::Types::kBDT, "BDT", "!H:!V:NTrees=2000:BoostType=Grad:Shrinkage=0.10:!UseBaggedGrad:nCuts=2000:UseNvars=4:PruneStrength=5:PruneMethod=CostComplexity:MaxDepth=6");
+   factory->BookMethod( dataloader, TMVA::Types::kBDT, "BDT", "!H:!V:NTrees=2000:BoostType=Grad:Shrinkage=0.10:!UseBaggedGrad:nCuts=2000:UseNvars=4:PruneStrength=5:PruneMethod=CostComplexity:MaxDepth=6");
 
    // Train MVAs using the set of training events
    factory->TrainAllMethods();

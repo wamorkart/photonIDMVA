@@ -1,0 +1,10 @@
+#dictionary and executables
+*.d
+*.so
+*.pcm
+
+#root files
+*.root
+
+#files saved by editors
+*.*~

@@ -24,10 +24,10 @@
 #include <algorithm>
 
 
-void add2Dweights(){
+void makeTestTree(){
 
   string FileName = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/PhaseISummer17/CMSSW_9_2_3_patch2/July24_2017/output_GJet_mass_80_Inf.root";
-  string FileNameW = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/PhaseISummer17/CMSSW_9_2_3_patch2/July24_2017/output_SinglePhoton_Train.root";
+  string FileNameTest = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/PhaseISummer17/CMSSW_9_2_3_patch2/July24_2017/output_SinglePhoton_Test.root";
 
   TFile fileIn("Weights_PtVSeta_Hgg_Gjets_all.root");
 
@@ -35,7 +35,6 @@ void add2Dweights(){
   TH2F *hWeightEE = (TH2F*)fileIn.Get("hWeight_end");
 
   //TFile fileInrho("Weights_rho_Moriond2017_vs_ICHEP2016.root");
-
   //TH1F *hrho_weight = (TH1F*)fileInrho.Get("hrho_Moriond_vs_ICHEP");
 
 
@@ -68,17 +67,17 @@ void add2Dweights(){
   int sigNEvs = t_PromtPhotons->GetEntries();
   int bkgNEvs = t_FakePhotons->GetEntries();
 
-  TFile *FileToTrain = new TFile(FileNameW.c_str(),"recreate");
-  TTree *t_sig_train = t_PromtPhotons->CloneTree(0);
-  TTree *t_bkg_train = t_FakePhotons->CloneTree(0);
+  TFile *FileToTest = new TFile(FileNameTest.c_str(),"recreate");
+  TTree *t_sig_test = t_PromtPhotons->CloneTree(0);
+  TTree *t_bkg_test = t_FakePhotons->CloneTree(0);
 
   float PtvsEtaWeight_sig_train;
   float rhoRew_sig;
   float rhoRew_bkg;
 
-  t_sig_train->Branch("PtvsEtaWeight",&PtvsEtaWeight_sig_train, "PtvsEtaWeight/F");
-  //t_sig_train->Branch("rhoRew",&rhoRew_sig, "rhoRew/F");
-  //t_bkg_train->Branch("rhoRew",&rhoRew_bkg, "rhoRew/F");
+  t_sig_test->Branch("PtvsEtaWeight",&PtvsEtaWeight_sig_train, "PtvsEtaWeight/F");
+  t_sig_test->Branch("rhoRew",&rhoRew_sig, "rhoRew/F");
+  t_bkg_test->Branch("rhoRew",&rhoRew_bkg, "rhoRew/F");
 
   //signal
 
@@ -117,11 +116,11 @@ void add2Dweights(){
     */
     //rhoRew_sig = 1.;
     PtvsEtaWeight_sig_train = weightPtEta;
-    if(s4_sig > -2 && s4_sig < 2 && i%2 == 1)      t_sig_train->Fill();
+    if(s4_sig > -2 && s4_sig < 2 && i%2 == 0)      t_sig_test->Fill();
 
   }
 
-  t_sig_train->AutoSave();
+  t_sig_test->AutoSave();
 
   cout << "signal saved" << endl;
 
@@ -138,11 +137,11 @@ void add2Dweights(){
     else rhoRew_bkg = 1;
     */
     //rhoRew_bkg = 1.;
-    if(s4_bkg > -2 && s4_bkg < 2 && k%2 == 1)  t_bkg_train->Fill();
+    if(s4_bkg > -2 && s4_bkg < 2 && k%2 == 0)  t_bkg_test->Fill();
 
   }
 
-  t_bkg_train->AutoSave();
+  t_bkg_test->AutoSave();
 
   cout << "background saved" << endl;
 

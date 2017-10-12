@@ -27,7 +27,7 @@
 
 void evaluateMVA(){
 
-  string treeFileName = "output_SinglePhoton_Train.root";
+  string treeFileName = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/PhaseISummer17/CMSSW_9_2_3_patch2/July24_2017/output_SinglePhoton_Test.root";
 
   TFile *treeFile = new TFile(treeFileName.c_str());
 
@@ -37,7 +37,7 @@ void evaluateMVA(){
   Long64_t nEntries_sig = t_sig->GetEntries();
   Long64_t nEntries_bkg = t_bkg->GetEntries();
 
-  string outputFileName = "mvares_Hgg_phoId_80X_EB.root";
+  string outputFileName = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/PhaseISummer17/CMSSW_9_2_3_patch2/July24_2017/mvares_Hgg_phoId_80X_EB.root";
 
   //output file create
   TFile *outputFile = new TFile (outputFileName.c_str(),"recreate");
@@ -239,8 +239,8 @@ void evaluateMVA(){
   t_bkg->SetBranchAddress("npu", &out_npu_b );
 
 
-  photonIdMva_sig_->BookMVA( "BDT", "weights/HggPhoId_80X_barrel_BDT.weights.xml");
-  photonIdMva_bkg_->BookMVA( "BDT", "weights/HggPhoId_80X_barrel_BDT.weights.xml");
+  photonIdMva_sig_->BookMVA( "BDT", "Moriond17/weights/HggPhoId_barrel_Moriond2017_wRhoRew.weights.xml");
+  photonIdMva_bkg_->BookMVA( "BDT", "Moriond17/weights/HggPhoId_barrel_Moriond2017_wRhoRew.weights.xml");
 
   for(int i = 0; i < nEntries_sig; i++){
     t_sig->GetEntry(i);
