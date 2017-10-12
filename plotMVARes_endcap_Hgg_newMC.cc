@@ -29,8 +29,8 @@ void plotMVARes(){
 
   string fileNames[10];
 
-  fileNames[0] = "mvares_Hgg_phoId_80X_EE.root";
-  // fileNames[1] = "mvares_Hgg_phoId_80X_EE_corrIso_wRhoRew.root";
+  fileNames[0] = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/PhaseISummer17/CMSSW_9_2_3_patch2/July24_2017/mvares_Hgg_phoId_92X_EE.root";
+  fileNames[1] = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/PhaseISummer17/CMSSW_9_2_3_patch2/July24_2017/mvares_Hgg_phoId_80X_EE.root";
   //  fileNames[1] = "mvares_Hgg_phoId_80X_EE_oldIso_noRhoRew.root";
   //  fileNames[2] = "/afs/cern.ch/work/i/ikucher/public/ICHEP_flashgg/CMSSW_8_0_8_patch1/src/flashgg/PhoIdTrain_shift/mvares_Hgg_phoId_80X_EE_newVtx_shift.root";
 
@@ -46,13 +46,13 @@ void plotMVARes(){
 
   string labelLeg_s[10];
 
-  labelLeg_s[0] = "Sig: new MC";
-  //labelLeg_s[1] = "Sig: iso corr, old MC, rho rew ";
+  labelLeg_s[0] = "Sig: 92X";
+  labelLeg_s[1] = "Sig: 80X";
 
   string labelLeg_b[10];
 
-  labelLeg_b[0] = "Bkg: new MC";
-  //labelLeg_b[1] = "Bkg: iso corr, old MC, rho rew";
+  labelLeg_b[0] = "Bkg: 92X";
+  labelLeg_b[1] = "Bkg: 80X";
 
 
   TCanvas * can_RoC = new TCanvas ("can_RoC","can_RoC",600,600);
@@ -64,11 +64,11 @@ void plotMVARes(){
   legend_RoC->SetTextFont(42);
 
   string labelLeg_RoC[10];  
-  labelLeg_RoC[0] = "new MC";
-  //labelLeg_RoC[1] = "old MC, iso corr, rho rew";
+  labelLeg_RoC[0] = "92X";
+  labelLeg_RoC[1] = "80X";
 
 
-  for(int i = 0; i < 1; i++){
+  for(int i = 0; i < 2; i++){
 
     cout << "file # " << i << endl;
 
@@ -95,8 +95,8 @@ void plotMVARes(){
       t_output_b->Draw(tmp_b,"(abs(scEta)>1.5)*weight","goff");
     }
     else{
-      t_output_s->Draw(tmp_s,"(abs(scEta)>1.5)*weight*rhoRew","goff");
-      t_output_b->Draw(tmp_b,"(abs(scEta)>1.5)*weight*rhoRew","goff");
+      t_output_s->Draw(tmp_s,"(abs(scEta)>1.5)*weight","goff");
+      t_output_b->Draw(tmp_b,"(abs(scEta)>1.5)*weight","goff");
     }
 
    
@@ -249,7 +249,7 @@ void plotMVARes(){
   }
 
   string mvaRes = "";
-  mvaRes = "mvares_EE_phoId_Hgg";
+  mvaRes = "mvares_EE_phoId_Hgg_92X";
 
   can->SaveAs((mvaRes+".pdf").c_str()); 
   can->SaveAs((mvaRes+".png").c_str()); 
@@ -257,7 +257,7 @@ void plotMVARes(){
 
   string canName_RoC = "";
 
-  canName_RoC = "RoC_EE_phoId_Hgg";
+  canName_RoC = "RoC_EE_phoId_Hgg_92X";
 
   can_RoC->SaveAs((canName_RoC+".pdf").c_str()); 
   can_RoC->SaveAs((canName_RoC+".png").c_str()); 

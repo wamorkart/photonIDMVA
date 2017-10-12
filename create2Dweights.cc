@@ -44,7 +44,7 @@ void create2Dweights(){
   hPt_vs_Eta_EE_Bkg->GetXaxis()->SetTitle("Pt_{#gamma} (GeV)");
   hPt_vs_Eta_EE_Bkg->GetYaxis()->SetTitle("#eta_{SC}");
 
-  TFile *File = TFile::Open("output_SinglePhoton.root");
+  TFile *File = TFile::Open("/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/PhaseISummer17/CMSSW_9_2_3_patch2/July24_2017/output_GJet_mass_80_Inf.root");
   TDirectory *dir_Photon = (TDirectory*)File->Get("photonViewDumper/trees");
 
   TTree *t_PromtPhotons = (TTree*)dir_Photon->Get("promptPhotons");
@@ -113,9 +113,9 @@ void create2Dweights(){
   c->cd(4);
   hPt_vs_Eta_EE_Bkg->Draw("lego");
 
-  c->SaveAs("PtvsEta_histos_80X_0thNotTrueVtx.pdf");
-  c->SaveAs("PtvsEta_histos_80X_0thNotTrueVtx.png");
-  c->SaveAs("PtvsEta_histos_80X_0thNotTrueVtx.root");
+  c->SaveAs("PtvsEta_histos_0thNotTrueVtx.pdf");
+  c->SaveAs("PtvsEta_histos_0thNotTrueVtx.png");
+  c->SaveAs("PtvsEta_histos_0thNotTrueVtx.root");
 
   //normalization
 
@@ -158,9 +158,9 @@ void create2Dweights(){
   cNorm->cd(4);
   hPt_vs_Eta_EE_Bkg->Draw("lego");
 
-  cNorm->SaveAs("PtvsEta_normHistos_80X_0thNotTrueVtx.pdf");
-  cNorm->SaveAs("PtvsEta_normHistos_80X_0thNotTrueVtx.png");
-  cNorm->SaveAs("PtvsEta_normHistos_80X_0thNotTrueVtx.root");
+  cNorm->SaveAs("PtvsEta_normHistos_0thNotTrueVtx.pdf");
+  cNorm->SaveAs("PtvsEta_normHistos_0thNotTrueVtx.png");
+  cNorm->SaveAs("PtvsEta_normHistos_0thNotTrueVtx.root");
 
   cout << "Integral of signal norm bar = " << hSig_bar_norm->Integral() << endl;
   cout << "Integral of bkg bar = " << hPt_vs_Eta_EB_Bkg->Integral() << endl;

@@ -24,7 +24,7 @@
 #include <algorithm>
 
 void plotAnyVariable(TCanvas * can, TCut baseCut, TCut twoDwCut, string varName, TLegend * legend, string label, int nbins, float min, float max, double maxHisto){
-  TFile *File = TFile::Open("output_SinglePhoton_Train.root");
+  TFile *File = TFile::Open("/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/PhaseISummer17/CMSSW_9_2_3_patch2/July24_2017/output_SinglePhoton_Train.root");
 
   TTree *t_FakePhotons = (TTree*)File->Get("fakePhotons");
   TTree *t_PromtPhotons = (TTree*)File->Get("promptPhotons");
@@ -126,12 +126,12 @@ void check2Dweights(){
   bool plot_SCEta = true;
   bool plot_SCERaw = false;
 
-  bool doEE = true;
-  bool doEB = false;
+  bool doEB = true;
+  bool doEE = false;
 
-  string tmp = "_80X_allPho_valid";
-  if(doEE) tmp = "_80X_EEPho_Hgg_newMC";
-  if(doEB) tmp = "_80X_EBPho_Hgg_newMC";
+  string tmp = "_92X_allPho_valid_test";
+  if(doEE) tmp = "_92X_EEPho_Hgg_newMC_test";
+  if(doEB) tmp = "_92X_EBPho_Hgg_newMC_test";
 
 
   if(plot_pT){
@@ -183,11 +183,6 @@ void check2Dweights(){
   if(plot_SCEta){
 
     TCanvas * can_SCEta = new TCanvas("can_SCEta","can_SCEta",600,600);
-    /*
-    TCut baseCut_SCEta = "(covIphiIphi<100)*weight";
-    if(doEB) baseCut_SCEta = "(abs(eta)<1.479)*weight";
-    if(doEE) baseCut_SCEta = "((eta>1.479 && eta<3.0) || (eta>-3.0 && eta<-1.479))*weight";
-    */
 
     TCut baseCut_SCEta = "(covIphiIphi<100 && pt > 20)*weight";
     TCut twoDwCut_SCEta = "(covIphiIphi<100 && pt > 20)*weight*PtvsEtaWeight";
