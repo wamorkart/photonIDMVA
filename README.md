@@ -1,4 +1,4 @@
-##Producing the ntuple
+## Producing the ntuple
 
 First you need to produce the ntuple from GJets datasets, with photon variables needed for the MVA training. The example dumper can be found inside flashgg area.
 * [Taggers/test/singlePhotonViewDumper_cfg.py](https://github.com/cms-analysis/flashgg/blob/master/Taggers/test/singlePhotonViewDumper_cfg.py)
@@ -12,8 +12,8 @@ Three GJet datasets are normally used.
 
 You need to write a json with the available GJet datasets to run the jobs in batch using script fggRunJobs.py
 
-##MVA part
-####Pt and eta reweight:
+## MVA part
+#### Pt and eta reweight:
 
 Once you got the ntuple, you need to do a 2D reweigt (pt and eta) to prompt photons with respect to fake photons.
 We usually do it in three steps.
@@ -39,7 +39,7 @@ root -l check2Dweights.cc
 ```
 By default it produces plots only for barrel. For endcap you need to run again by modifying a few variable inside the scripts.
 
-####BDT training:
+#### BDT training:
 
 For the TMVA training there are two scripts, 
 - For barrel: TMVAClassification_preSelCuts_Run2.C
@@ -49,7 +49,7 @@ Once you are done with training, you need to produce the weight files from the o
 - For barrel: evaluateMVA_EB_Hgg_newMC.cc
 - For endcap: evaluateMVA_EE_Hgg_corrIso_newMC.cc
 
-####To plot MVA output, ROC curves and efficiency plots:
+#### To plot MVA output, ROC curves and efficiency plots:
 
 To plot the MVA output and ROC curves, use
 
