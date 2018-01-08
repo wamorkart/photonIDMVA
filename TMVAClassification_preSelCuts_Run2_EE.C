@@ -49,7 +49,7 @@
 #include "TMVA/Tools.h"
 #endif
 
-void TMVAClassification_preSelCuts_Run2_EE_isoCorr_newMC( TString myMethodList = "" )
+void TMVAClassification_preSelCuts_Run2_EE( TString myMethodList = "" )
 {
    // The explicit loading of the shared libTMVA is done in TMVAlogon.C, defined in .rootrc
    // if you use your private .rootrc, or run from a different directory, please copy the
@@ -99,7 +99,7 @@ void TMVAClassification_preSelCuts_Run2_EE_isoCorr_newMC( TString myMethodList =
    // --- Here the preparation phase begins
 
    // Create a ROOT output file where TMVA will store ntuples, histograms, etc.
-   TString outfileName( "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/PhaseISummer17/CMSSW_9_2_3_patch2/July24_2017/HggPhotonID_92X_endcap_phoIso_Corr.root" );
+   TString outfileName( "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/January2018_v1/January06/HggPhotonID_92X_endcap.root" );
    TFile* outputFile = TFile::Open( outfileName, "RECREATE" );
 
    TMVA::Factory *factory = new TMVA::Factory( "HggPhoId_92X_endcap", outputFile, "!V:!Silent:Color:DrawProgressBar:Transformations=I;D;P;G,D:AnalysisType=Classification" );
@@ -113,8 +113,8 @@ void TMVAClassification_preSelCuts_Run2_EE_isoCorr_newMC( TString myMethodList =
    dataloader->AddVariable( "phiWidth", 'F' );
    dataloader->AddVariable( "covIEtaIPhi", 'F' ); 
    dataloader->AddVariable( "s4", 'F' );
-   //dataloader->AddVariable( "phoIso03", 'F' );
-   dataloader->AddVariable( "isoPhoCorrMax2p5", 'F' );
+   dataloader->AddVariable( "phoIso03", 'F' );
+   //dataloader->AddVariable( "isoPhoCorrMax2p5", 'F' );
    dataloader->AddVariable( "chgIsoWrtChosenVtx", 'F' );
    dataloader->AddVariable( "chgIsoWrtWorstVtx", 'F' );
    dataloader->AddVariable( "scEta", 'F' );
@@ -122,7 +122,7 @@ void TMVAClassification_preSelCuts_Run2_EE_isoCorr_newMC( TString myMethodList =
    dataloader->AddVariable( "esEffSigmaRR", 'F' );
    dataloader->AddVariable("esEnergy/SCRawE",'F');
 
-   TString fname = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/PhaseISummer17/CMSSW_9_2_3_patch2/July24_2017/output_SinglePhoton_Train.root";
+   TString fname = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/January2018_v1/January06/output_SinglePhoton_Train.root";
 
    TFile *input = TFile::Open( fname );                 
    TTree *signal     = (TTree*)input->Get("promptPhotons");     
