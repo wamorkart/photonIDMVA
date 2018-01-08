@@ -26,8 +26,8 @@
 
 void add2Dweights(){
 
-  string FileName = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/PhaseISummer17/CMSSW_9_2_3_patch2/July24_2017/output_GJet_mass_80_Inf.root";
-  string FileNameW = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/PhaseISummer17/CMSSW_9_2_3_patch2/July24_2017/output_SinglePhoton_Train.root";
+  string FileName = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/January2018_v1/January06/output_GJet_2017_mc_v1.root";
+  string FileNameW = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/January2018_v1/January06/output_SinglePhoton_Train.root";
 
   TFile fileIn("Weights_PtVSeta_Hgg_Gjets_all.root");
 

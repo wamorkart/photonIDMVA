@@ -29,9 +29,9 @@ void plotMVARes(){
 
   string fileNames[10];
 
-  fileNames[0] = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/PhaseISummer17/CMSSW_9_2_3_patch2/July24_2017/mvares_Hgg_phoId_92X_EB.root";
-  fileNames[1] = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/PhaseISummer17/CMSSW_9_2_3_patch2/July24_2017/mvares_Hgg_phoId_80X_EB.root";
-
+  fileNames[0] = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/January2018_v1/January06/mvares_Hgg_phoId_92X_EB_woisocor.root";
+  fileNames[1] = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/January2018_v1/January06/mvares_Hgg_phoId_92X_EB_wisocor.root";
+  fileNames[2] = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/January2018_v1/January06/mvares_Hgg_phoId_80X_EB_woisocor.root";
 
   TCanvas * can = new TCanvas("can_mvares","can_mvares",600,600);
   string label_mvares = "mva output";
@@ -44,13 +44,15 @@ void plotMVARes(){
 
   string labelLeg_s[10];
 
-  labelLeg_s[0] = "Sig: 92X";
-  labelLeg_s[1] = "Sig: 80X";
+  labelLeg_s[0] = "Sig: woisocor";
+  labelLeg_s[1] = "Sig: wisocor";
+  labelLeg_s[2] = "Sig: Moriond17";
 
   string labelLeg_b[10];
 
-  labelLeg_b[0] = "Bkg: 92X";
-  labelLeg_b[1] = "Bkg: 80X";
+  labelLeg_b[0] = "Bkg: woisocor";
+  labelLeg_b[1] = "Bkg: wisocor";
+  labelLeg_b[2] = "Bkg: Moriond17";
 
 
   TCanvas * can_RoC = new TCanvas ("can_RoC","can_RoC",600,600);
@@ -62,11 +64,12 @@ void plotMVARes(){
   legend_RoC->SetTextFont(42);
 
   string labelLeg_RoC[10];  
-  labelLeg_RoC[0] = "92X";
-  labelLeg_RoC[1] = "80X";
+  labelLeg_RoC[0] = "woisocor";
+  labelLeg_RoC[1] = "wisocor";
+  labelLeg_RoC[2] = "Moriond17";
 
 
-  for(int i = 0; i < 2; i++){
+  for(int i = 0; i < 3; i++){
 
     cout << "file # " << i << endl;
 
@@ -81,22 +84,14 @@ void plotMVARes(){
     TString tmp_s = "";
     TString tmp_b  = "";
 
-    if(i == 0 || i == 1){
-      tmp_s = "mvares";
-      tmp_s+=">>histo_s";
+    tmp_s = "mvares";
+    tmp_s+=">>histo_s";
+    
+    tmp_b = "mvares";
+    tmp_b+=">>histo_b";
 
-      tmp_b = "mvares";
-      tmp_b+=">>histo_b";
-    }
-
-    if(i == 0){
-      t_output_s->Draw(tmp_s,"(abs(scEta)<1.5)*weight","goff");
-      t_output_b->Draw(tmp_b,"(abs(scEta)<1.5)*weight","goff");
-    }
-    else{
-      t_output_s->Draw(tmp_s,"(abs(scEta)<1.5)*weight","goff");
-      t_output_b->Draw(tmp_b,"(abs(scEta)<1.5)*weight","goff");
-    }
+    t_output_s->Draw(tmp_s,"(abs(scEta)<1.5)*weight","goff");
+    t_output_b->Draw(tmp_b,"(abs(scEta)<1.5)*weight","goff");
 
     
     float Nsig[320], Nbkg[320];
@@ -122,7 +117,7 @@ void plotMVARes(){
       sigEff[k] = Nsig[k]/Nsig[0];
       bkgEff[k] = Nbkg[k]/Nbkg[0];
 
-      //      if(sigEff[k] > 0.98) cout << " sigEff[k] = " << sigEff[k] <<  " bkgEff[k] = " << bkgEff[k] << " with a cut at " << mvaResCutVal << endl;
+      // if(sigEff[k] > 0.98) cout << " sigEff[k] = " << sigEff[k] <<  " bkgEff[k] = " << bkgEff[k] << " with a cut at " << mvaResCutVal << endl;
       if(sigEff[k] > 0.89 && sigEff[k] < 0.91) cout << " sigEff[k] = " << sigEff[k] <<  " bkgEff[k] = " << bkgEff[k] << " with a cut at " << mvaResCutVal << endl;
 
 
@@ -132,7 +127,7 @@ void plotMVARes(){
     TGraph * bkgEff_vs_cut = new TGraph (nCuts, cutsVal, bkgEff);
     TGraph * sigEff_vs_bkgEff = new TGraph (nCuts, sigEff, bkgEff);
 
-    //draw mvares
+    // draw mvares
     can->cd();
     can->SetLogy();
 
@@ -141,13 +136,13 @@ void plotMVARes(){
     histo_s->GetXaxis()->SetTitle(label_mvares.c_str());
     histo_s->SetMaximum(histo_s->GetBinContent(histo_s->GetMaximumBin())*1000);
        
-    //    histo_s->SetMarkerColor(i+2);
-    //histo_s->SetLineColor(i+2);
+    // histo_s->SetMarkerColor(i+2);
+    // histo_s->SetLineColor(i+2);
     histo_s->SetLineWidth(2);
 
     histo_b->SetLineStyle(2);
-    //histo_b->SetMarkerColor(i+2);
-    //histo_b->SetLineColor(i+2);
+    // histo_b->SetMarkerColor(i+2);
+    // histo_b->SetLineColor(i+2);
     histo_b->SetLineWidth(2);
 
     if(i == 0) {
@@ -190,7 +185,7 @@ void plotMVARes(){
     can->Update();
     can->Modified();
 
-    //draw RoC curves 
+    // draw RoC curves 
 
     can_RoC->cd();
 
@@ -249,7 +244,7 @@ void plotMVARes(){
   }
 
   string mvaRes = "";
-  mvaRes = "mvares_EB_phoId_Hgg_92X";
+  mvaRes = "mvares_EB_phoId_Hgg";
 
   can->SaveAs((mvaRes+".pdf").c_str()); 
   can->SaveAs((mvaRes+".png").c_str()); 
@@ -257,11 +252,9 @@ void plotMVARes(){
 
   string canName_RoC = "";
 
-  canName_RoC = "RoC_EB_phoId_Hgg_92X";
+  canName_RoC = "RoC_EB_phoId_Hgg";
 
   can_RoC->SaveAs((canName_RoC+".pdf").c_str()); 
   can_RoC->SaveAs((canName_RoC+".png").c_str()); 
   can_RoC->SaveAs((canName_RoC+".root").c_str()); 
 }
-
-

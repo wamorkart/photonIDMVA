@@ -42,12 +42,12 @@ By default it produces plots only for barrel. For endcap you need to run again b
 #### BDT training:
 
 For the TMVA training there are two scripts, 
-- For barrel: TMVAClassification_preSelCuts_Run2.C
-- For endcap: TMVAClassification_preSelCuts_Run2_EE_isoCorr_newMC.C
+- For barrel: TMVAClassification_preSelCuts_Run2_EB.C
+- For endcap: TMVAClassification_preSelCuts_Run2_EE.C
 
 Once you are done with training, you need to produce the weight files from the output root files using the following scripts.
 - For barrel: evaluateMVA_EB_Hgg_newMC.cc
-- For endcap: evaluateMVA_EE_Hgg_corrIso_newMC.cc
+- For endcap: evaluateMVA_EE_Hgg_newMC.cc
 
 #### To plot MVA output, ROC curves and efficiency plots:
 

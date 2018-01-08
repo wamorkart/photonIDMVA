@@ -28,11 +28,11 @@
 
 void saveHistoToFile(){
 
-  string fileName_EB_old = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/PhaseISummer17/CMSSW_9_2_3_patch2/July24_2017/mvares_Hgg_phoId_80X_EB.root";
-  string fileName_EB = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/PhaseISummer17/CMSSW_9_2_3_patch2/July24_2017/mvares_Hgg_phoId_92X_EB.root";
+  string fileName_EB = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/January2018_v1/January06/mvares_Hgg_phoId_92X_EB_woisocor.root";
+  string fileName_EB_old = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/January2018_v1/January06/mvares_Hgg_phoId_92X_EB_wisocor.root";
 
-  string fileName_EE_old = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/PhaseISummer17/CMSSW_9_2_3_patch2/July24_2017/mvares_Hgg_phoId_80X_EE.root";
-  string fileName_EE = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/PhaseISummer17/CMSSW_9_2_3_patch2/July24_2017/mvares_Hgg_phoId_92X_EE.root";
+  string fileName_EE = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/January2018_v1/January06/mvares_Hgg_phoId_92X_EE_woisocor.root";
+  string fileName_EE_old = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/January2018_v1/January06/mvares_Hgg_phoId_92X_EE_wisocor.root";
 
   // Reading tree for EB
   TFile *file_EB = new TFile(fileName_EB.c_str());
@@ -108,11 +108,11 @@ void saveHistoToFile(){
   TH1F * h_eta_EB_old_Cut_b   = new TH1F ("h_eta_EB_old_Cut_b","h_eta_EB_old_Cut_b",50,-2.5,2.5);
 
   //WP 95%
-  TCut EB_Cut_s = "(mvares>0.1 && abs(scEta)<1.5 && pt > 18)";
-  TCut EB_Cut_b = "(mvares>0.1 && abs(scEta)<1.5 && pt > 18)";
+  TCut EB_Cut_s = "(mvares>0.27 && abs(scEta)<1.5 && pt > 18)";
+  TCut EB_Cut_b = "(mvares>0.27 && abs(scEta)<1.5 && pt > 18)";
 
-  TCut EB_old_Cut_s = "(mvares>0.1 && abs(scEta)<1.5 && pt > 18)";
-  TCut EB_old_Cut_b = "(mvares>0.1 && abs(scEta)<1.5 && pt > 18)";
+  TCut EB_old_Cut_s = "(mvares>0.43 && abs(scEta)<1.5 && pt > 18)";
+  TCut EB_old_Cut_b = "(mvares>0.43 && abs(scEta)<1.5 && pt > 18)";
 
   h_pt_EB_Cut_s->Sumw2();
   h_pt_EB_Cut_b->Sumw2();
@@ -218,11 +218,11 @@ void saveHistoToFile(){
   TH1F * h_eta_EE_old_Cut_b   = new TH1F ("h_eta_EE_old_Cut_b","h_eta_EE_old_Cut_b",50,-2.5,2.5);
 
   //WP90%
-  TCut EE_Cut_s = "(mvares>0.15 && abs(scEta)>1.5 && pt > 18)";
-  TCut EE_Cut_b = "(mvares>0.15 && abs(scEta)>1.5 && pt > 18)";
+  TCut EE_Cut_s = "(mvares>0.13 && abs(scEta)>1.5 && pt > 18)";
+  TCut EE_Cut_b = "(mvares>0.13 && abs(scEta)>1.5 && pt > 18)";
   
-  TCut EE_old_Cut_s = "(mvares>0.15 && abs(scEta)>1.5 && pt > 18)";
-  TCut EE_old_Cut_b = "(mvares>0.15 && abs(scEta)>1.5 && pt > 18)";
+  TCut EE_old_Cut_s = "(mvares>0.23 && abs(scEta)>1.5 && pt > 18)";
+  TCut EE_old_Cut_b = "(mvares>0.23 && abs(scEta)>1.5 && pt > 18)";
   
   h_pt_EE_Cut_s->Sumw2();
   h_pt_EE_Cut_b->Sumw2();
@@ -401,16 +401,16 @@ void saveHistoToFile(){
   h_pt_EB_eff_s->SetMarkerColor(kBlue);
   h_pt_EB_eff_s->Draw("P");
 
-  h_pt_EB_old_eff_s->SetLineColor(kAzure-4);
+  h_pt_EB_old_eff_s->SetLineColor(kRed);
   h_pt_EB_old_eff_s->SetMarkerStyle(20);
   h_pt_EB_old_eff_s->SetMarkerSize(0.7);
-  h_pt_EB_old_eff_s->SetMarkerColor(kAzure-4);
+  h_pt_EB_old_eff_s->SetMarkerColor(kRed);
   h_pt_EB_old_eff_s->Draw("Psame");
 
-  h_pt_EB_eff_b->SetLineColor(kRed);
+  h_pt_EB_eff_b->SetLineColor(kAzure-4);
   h_pt_EB_eff_b->SetMarkerStyle(20);
   h_pt_EB_eff_b->SetMarkerSize(0.7);
-  h_pt_EB_eff_b->SetMarkerColor(kRed);
+  h_pt_EB_eff_b->SetMarkerColor(kAzure-4);
   h_pt_EB_eff_b->Draw("Psame");
 
   h_pt_EB_old_eff_b->SetLineColor(kRed-9);
@@ -419,10 +419,10 @@ void saveHistoToFile(){
   h_pt_EB_old_eff_b->SetMarkerColor(kRed-9);
   h_pt_EB_old_eff_b->Draw("Psame");
 
-  leg->AddEntry(h_pt_EB_eff_s, "Signal: 92X","P");
-  leg->AddEntry(h_pt_EB_eff_b, "Bkg : 92X","P");
-  leg->AddEntry(h_pt_EB_old_eff_s, "Signal : 80X","P");
-  leg->AddEntry(h_pt_EB_old_eff_b, "Bkg : 80X","P");
+  leg->AddEntry(h_pt_EB_eff_s, "Signal: woisocor","P");
+  leg->AddEntry(h_pt_EB_eff_b, "Bkg : woisocor","P");
+  leg->AddEntry(h_pt_EB_old_eff_s, "Signal : wisocor","P");
+  leg->AddEntry(h_pt_EB_old_eff_b, "Bkg : wisocor","P");
   leg->Draw("same");
 
   can_pt_eff_EB->Update();
@@ -447,16 +447,16 @@ void saveHistoToFile(){
   h_nVtx_EB_eff_s->SetMarkerColor(kBlue);
   h_nVtx_EB_eff_s->Draw("P");
 
-  h_nVtx_EB_old_eff_s->SetLineColor(kAzure-4);
+  h_nVtx_EB_old_eff_s->SetLineColor(kRed);
   h_nVtx_EB_old_eff_s->SetMarkerStyle(20);
   h_nVtx_EB_old_eff_s->SetMarkerSize(0.7);
-  h_nVtx_EB_old_eff_s->SetMarkerColor(kAzure-4);
+  h_nVtx_EB_old_eff_s->SetMarkerColor(kRed);
   h_nVtx_EB_old_eff_s->Draw("Psame");
 
-  h_nVtx_EB_eff_b->SetLineColor(kRed);
+  h_nVtx_EB_eff_b->SetLineColor(kAzure-4);
   h_nVtx_EB_eff_b->SetMarkerStyle(20);
   h_nVtx_EB_eff_b->SetMarkerSize(0.7);
-  h_nVtx_EB_eff_b->SetMarkerColor(kRed);
+  h_nVtx_EB_eff_b->SetMarkerColor(kAzure-4);
   h_nVtx_EB_eff_b->Draw("Psame");
 
   h_nVtx_EB_old_eff_b->SetLineColor(kRed-9);
@@ -489,16 +489,16 @@ void saveHistoToFile(){
   h_eta_EB_eff_s->SetMarkerColor(kBlue);
   h_eta_EB_eff_s->Draw("P");
 
-  h_eta_EB_old_eff_s->SetLineColor(kAzure-4);
+  h_eta_EB_old_eff_s->SetLineColor(kRed);
   h_eta_EB_old_eff_s->SetMarkerStyle(20);
   h_eta_EB_old_eff_s->SetMarkerSize(0.7);
-  h_eta_EB_old_eff_s->SetMarkerColor(kAzure-4);
+  h_eta_EB_old_eff_s->SetMarkerColor(kRed);
   h_eta_EB_old_eff_s->Draw("Psame");
 
-  h_eta_EB_eff_b->SetLineColor(kRed);
+  h_eta_EB_eff_b->SetLineColor(kAzure-4);
   h_eta_EB_eff_b->SetMarkerStyle(20);
   h_eta_EB_eff_b->SetMarkerSize(0.7);
-  h_eta_EB_eff_b->SetMarkerColor(kRed);
+  h_eta_EB_eff_b->SetMarkerColor(kAzure-4);
   h_eta_EB_eff_b->Draw("Psame");
 
   h_eta_EB_old_eff_b->SetLineColor(kRed-9);
@@ -531,16 +531,16 @@ void saveHistoToFile(){
   h_pt_EE_eff_s->SetMarkerColor(kBlue);
   h_pt_EE_eff_s->Draw("P");
 
-  h_pt_EE_old_eff_s->SetLineColor(kAzure-4);
+  h_pt_EE_old_eff_s->SetLineColor(kRed);
   h_pt_EE_old_eff_s->SetMarkerStyle(20);
   h_pt_EE_old_eff_s->SetMarkerSize(0.7);
-  h_pt_EE_old_eff_s->SetMarkerColor(kAzure-4);
+  h_pt_EE_old_eff_s->SetMarkerColor(kRed);
   h_pt_EE_old_eff_s->Draw("Psame");
 
-  h_pt_EE_eff_b->SetLineColor(kRed);
+  h_pt_EE_eff_b->SetLineColor(kAzure-4);
   h_pt_EE_eff_b->SetMarkerStyle(20);
   h_pt_EE_eff_b->SetMarkerSize(0.7);
-  h_pt_EE_eff_b->SetMarkerColor(kRed);
+  h_pt_EE_eff_b->SetMarkerColor(kAzure-4);
   h_pt_EE_eff_b->Draw("Psame");
 
   h_pt_EE_old_eff_b->SetLineColor(kRed-9);
@@ -549,11 +549,11 @@ void saveHistoToFile(){
   h_pt_EE_old_eff_b->SetMarkerColor(kRed-9);
   h_pt_EE_old_eff_b->Draw("Psame");
 
-  leg_EE->AddEntry(h_pt_EE_eff_s, "Signal: 92X","P");
-  leg_EE->AddEntry(h_pt_EE_eff_b, "Bkg : 92X","P");
+  leg_EE->AddEntry(h_pt_EE_eff_s, "Signal: woisocor","P");
+  leg_EE->AddEntry(h_pt_EE_eff_b, "Bkg : woisocor","P");
 
-  leg_EE->AddEntry(h_pt_EE_old_eff_s, "Signal : 80X","P");
-  leg_EE->AddEntry(h_pt_EE_old_eff_b, "Bkg : 80X","P");
+  leg_EE->AddEntry(h_pt_EE_old_eff_s, "Signal : wisocor","P");
+  leg_EE->AddEntry(h_pt_EE_old_eff_b, "Bkg : wisocor","P");
 
   leg_EE->Draw("same");
 
@@ -579,16 +579,16 @@ void saveHistoToFile(){
   h_nVtx_EE_eff_s->SetMarkerColor(kBlue);
   h_nVtx_EE_eff_s->Draw("P");
 
-  h_nVtx_EE_old_eff_s->SetLineColor(kAzure-4);
+  h_nVtx_EE_old_eff_s->SetLineColor(kRed);
   h_nVtx_EE_old_eff_s->SetMarkerStyle(20);
   h_nVtx_EE_old_eff_s->SetMarkerSize(0.7);
-  h_nVtx_EE_old_eff_s->SetMarkerColor(kAzure-4);
+  h_nVtx_EE_old_eff_s->SetMarkerColor(kRed);
   h_nVtx_EE_old_eff_s->Draw("Psame");
 
-  h_nVtx_EE_eff_b->SetLineColor(kRed);
+  h_nVtx_EE_eff_b->SetLineColor(kAzure-4);
   h_nVtx_EE_eff_b->SetMarkerStyle(20);
   h_nVtx_EE_eff_b->SetMarkerSize(0.7);
-  h_nVtx_EE_eff_b->SetMarkerColor(kRed);
+  h_nVtx_EE_eff_b->SetMarkerColor(kAzure-4);
   h_nVtx_EE_eff_b->Draw("Psame");
 
   h_nVtx_EE_old_eff_b->SetLineColor(kRed-9);
@@ -621,16 +621,16 @@ void saveHistoToFile(){
   h_eta_EB_eff_s->SetMarkerColor(kBlue);
   h_eta_EB_eff_s->Draw("P");
 
-  h_eta_EB_old_eff_s->SetLineColor(kAzure-4);
+  h_eta_EB_old_eff_s->SetLineColor(kRed);
   h_eta_EB_old_eff_s->SetMarkerStyle(20);
   h_eta_EB_old_eff_s->SetMarkerSize(0.7);
-  h_eta_EB_old_eff_s->SetMarkerColor(kAzure-4);
+  h_eta_EB_old_eff_s->SetMarkerColor(kRed);
   h_eta_EB_old_eff_s->Draw("Psame");
 
-  h_eta_EB_eff_b->SetLineColor(kRed);
+  h_eta_EB_eff_b->SetLineColor(kAzure-4);
   h_eta_EB_eff_b->SetMarkerStyle(20);
   h_eta_EB_eff_b->SetMarkerSize(0.7);
-  h_eta_EB_eff_b->SetMarkerColor(kRed);
+  h_eta_EB_eff_b->SetMarkerColor(kAzure-4);
   h_eta_EB_eff_b->Draw("Psame");
 
   h_eta_EB_old_eff_b->SetLineColor(kRed-9);
@@ -645,16 +645,16 @@ void saveHistoToFile(){
   h_eta_EE_eff_s->SetMarkerColor(kBlue);
   h_eta_EE_eff_s->Draw("Psame");
 
-  h_eta_EE_old_eff_s->SetLineColor(kAzure-4);
+  h_eta_EE_old_eff_s->SetLineColor(kRed);
   h_eta_EE_old_eff_s->SetMarkerStyle(20);
   h_eta_EE_old_eff_s->SetMarkerSize(0.7);
-  h_eta_EE_old_eff_s->SetMarkerColor(kAzure-4);
+  h_eta_EE_old_eff_s->SetMarkerColor(kRed);
   h_eta_EE_old_eff_s->Draw("Psame");
 
-  h_eta_EE_eff_b->SetLineColor(kRed);
+  h_eta_EE_eff_b->SetLineColor(kAzure-4);
   h_eta_EE_eff_b->SetMarkerStyle(20);
   h_eta_EE_eff_b->SetMarkerSize(0.7);
-  h_eta_EE_eff_b->SetMarkerColor(kRed);
+  h_eta_EE_eff_b->SetMarkerColor(kAzure-4);
   h_eta_EE_eff_b->Draw("Psame");
 
   h_eta_EE_old_eff_b->SetLineColor(kRed-9);
