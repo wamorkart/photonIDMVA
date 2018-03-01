@@ -99,10 +99,10 @@ void TMVAClassification_preSelCuts_Run2_EE( TString myMethodList = "" )
    // --- Here the preparation phase begins
 
    // Create a ROOT output file where TMVA will store ntuples, histograms, etc.
-   TString outfileName( "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/January2018_v1/January06/HggPhotonID_92X_endcap.root" );
+   TString outfileName( "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/MCv2_February2018/February03/Mass95/HggPhotonID_94X_endcap_woIsocor.root" );
    TFile* outputFile = TFile::Open( outfileName, "RECREATE" );
 
-   TMVA::Factory *factory = new TMVA::Factory( "HggPhoId_92X_endcap", outputFile, "!V:!Silent:Color:DrawProgressBar:Transformations=I;D;P;G,D:AnalysisType=Classification" );
+   TMVA::Factory *factory = new TMVA::Factory( "HggPhoId_94X_endcap", outputFile, "!V:!Silent:Color:DrawProgressBar:Transformations=I;D;P;G,D:AnalysisType=Classification" );
 
    TMVA::DataLoader *dataloader = new TMVA::DataLoader("dataset");
   
@@ -114,15 +114,15 @@ void TMVAClassification_preSelCuts_Run2_EE( TString myMethodList = "" )
    dataloader->AddVariable( "covIEtaIPhi", 'F' ); 
    dataloader->AddVariable( "s4", 'F' );
    dataloader->AddVariable( "phoIso03", 'F' );
-   //dataloader->AddVariable( "isoPhoCorrMax2p5", 'F' );
+   //dataloader->AddVariable( "phoIsoCorr", 'F' );
    dataloader->AddVariable( "chgIsoWrtChosenVtx", 'F' );
    dataloader->AddVariable( "chgIsoWrtWorstVtx", 'F' );
    dataloader->AddVariable( "scEta", 'F' );
    dataloader->AddVariable( "rho", 'F' );  
    dataloader->AddVariable( "esEffSigmaRR", 'F' );
-   dataloader->AddVariable("esEnergy/SCRawE",'F');
+   dataloader->AddVariable( "esEnergyOverRawE",'F');
 
-   TString fname = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/January2018_v1/January06/output_SinglePhoton_Train.root";
+   TString fname = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/MCv2_February2018/February03/Mass95/output_SinglePhoton_Train.root";
 
    TFile *input = TFile::Open( fname );                 
    TTree *signal     = (TTree*)input->Get("promptPhotons");     
