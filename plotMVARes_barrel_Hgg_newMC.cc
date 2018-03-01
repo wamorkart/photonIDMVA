@@ -15,7 +15,6 @@
 #include "TMath.h"
 #include "TCut.h"
 #include "TPaletteAxis.h"
-
 #include "TMVA/Reader.h"
 
 #include <iostream>
@@ -29,9 +28,9 @@ void plotMVARes(){
 
   string fileNames[10];
 
-  fileNames[0] = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/January2018_v1/January06/mvares_Hgg_phoId_92X_EB_woisocor.root";
-  fileNames[1] = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/January2018_v1/January06/mvares_Hgg_phoId_92X_EB_wisocor.root";
-  fileNames[2] = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/January2018_v1/January06/mvares_Hgg_phoId_80X_EB_woisocor.root";
+  fileNames[0] = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/MCv2_February2018/February03/Mass95/mvares_Hgg_phoId_94X_EB_woIsocorr.root";
+  fileNames[1] = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/MCv2_February2018/February03/Mass95/mvares_Hgg_phoId_92X_EB_woIsocorr.root";
+  fileNames[2] = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/MCv2_February2018/February03/Mass95/mvares_Hgg_phoId_80X_EB_Moriond17.root";
 
   TCanvas * can = new TCanvas("can_mvares","can_mvares",600,600);
   string label_mvares = "mva output";
@@ -44,15 +43,15 @@ void plotMVARes(){
 
   string labelLeg_s[10];
 
-  labelLeg_s[0] = "Sig: woisocor";
-  labelLeg_s[1] = "Sig: wisocor";
-  labelLeg_s[2] = "Sig: Moriond17";
+  labelLeg_s[0] = "Sig: 9_4_X";
+  labelLeg_s[1] = "Sig: 9_2_X";
+  labelLeg_s[2] = "Sig: 8_0_X";
 
   string labelLeg_b[10];
 
-  labelLeg_b[0] = "Bkg: woisocor";
-  labelLeg_b[1] = "Bkg: wisocor";
-  labelLeg_b[2] = "Bkg: Moriond17";
+  labelLeg_b[0] = "Bkg: 9_4_X";
+  labelLeg_b[1] = "Bkg: 9_2_X";
+  labelLeg_b[2] = "Bkg: 8_0_X";
 
 
   TCanvas * can_RoC = new TCanvas ("can_RoC","can_RoC",600,600);
@@ -64,9 +63,9 @@ void plotMVARes(){
   legend_RoC->SetTextFont(42);
 
   string labelLeg_RoC[10];  
-  labelLeg_RoC[0] = "woisocor";
-  labelLeg_RoC[1] = "wisocor";
-  labelLeg_RoC[2] = "Moriond17";
+  labelLeg_RoC[0] = "9_4_X";
+  labelLeg_RoC[1] = "9_2_X";
+  labelLeg_RoC[2] = "8_0_X";
 
 
   for(int i = 0; i < 3; i++){
@@ -118,7 +117,7 @@ void plotMVARes(){
       bkgEff[k] = Nbkg[k]/Nbkg[0];
 
       // if(sigEff[k] > 0.98) cout << " sigEff[k] = " << sigEff[k] <<  " bkgEff[k] = " << bkgEff[k] << " with a cut at " << mvaResCutVal << endl;
-      if(sigEff[k] > 0.89 && sigEff[k] < 0.91) cout << " sigEff[k] = " << sigEff[k] <<  " bkgEff[k] = " << bkgEff[k] << " with a cut at " << mvaResCutVal << endl;
+      if(sigEff[k] > 0.895 && sigEff[k] < 0.905) cout << " sigEff[k] = " << sigEff[k] <<  " bkgEff[k] = " << bkgEff[k] << " with a cut at " << mvaResCutVal << endl;
 
 
     }

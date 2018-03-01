@@ -44,7 +44,7 @@ void create2Dweights(){
   hPt_vs_Eta_EE_Bkg->GetXaxis()->SetTitle("Pt_{#gamma} (GeV)");
   hPt_vs_Eta_EE_Bkg->GetYaxis()->SetTitle("#eta_{SC}");
 
-  TFile *File = TFile::Open("/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/January2018_v1/January06/output_GJet_2017_mc_v1.root");
+  TFile *File = TFile::Open("/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/MCv2_February2018/February03/Mass95/output_GJets_2017v2_mass95.root");
   TDirectory *dir_Photon = (TDirectory*)File->Get("photonViewDumper/trees");
 
   TTree *t_PromtPhotons = (TTree*)dir_Photon->Get("promptPhotons");

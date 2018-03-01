@@ -27,7 +27,7 @@
 
 void evaluateMVA(){
 
-  string treeFileName = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/January2018_v1/January06/output_SinglePhoton_Test.root";
+  string treeFileName = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/MCv2_February2018/February03/Mass95/output_SinglePhoton_Test.root";
 
   TFile *treeFile = new TFile(treeFileName.c_str());
 
@@ -37,7 +37,7 @@ void evaluateMVA(){
   Long64_t nEntries_sig = t_sig->GetEntries();
   Long64_t nEntries_bkg = t_bkg->GetEntries();
 
-  string outputFileName = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/January2018_v1/January06/mvares_Hgg_phoId_80X_EE_wisocor.root";
+  string outputFileName = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/MCv2_February2018/February03/Mass95/mvares_Hgg_phoId_94X_EE_Isocorr.root";
 
   // output file create
   TFile *outputFile = new TFile (outputFileName.c_str(),"recreate");
@@ -117,8 +117,8 @@ void evaluateMVA(){
   float out_isoPhoCorrNew_s = 999;
   float out_isoPhoCorrNew_b = 999.;
 
-  float out_isoPhoCorrMax2p5_s = 999.;
-  float out_isoPhoCorrMax2p5_b = 999.;
+  float out_phoIsoCorr_s = 999.;
+  float out_phoIsoCorr_b = 999.;
 
   // output file branches
   outputTree_s->Branch("SCRawE",&out_SCRawE_s);
@@ -129,13 +129,13 @@ void evaluateMVA(){
   outputTree_s->Branch("covIEtaIPhi",&out_covIEtaIPhi_s);
   outputTree_s->Branch("s4",&out_s4_s);
   // outputTree_s->Branch("phoIso03",&out_isoPhotons_s);
-  outputTree_s->Branch("isoPhoCorrMax2p5", &out_isoPhoCorrMax2p5_s );
+  outputTree_s->Branch("phoIsoCorr", &out_phoIsoCorr_s );
   outputTree_s->Branch("chgIsoWrtChosenVtx",&out_isoChargedHad_s);
   outputTree_s->Branch("chgIsoWrtWorstVtx",&out_chgIsoWrtWorstVtx_s);
   outputTree_s->Branch("scEta",&out_scEta_s);
   outputTree_s->Branch("rho",&out_rho_s);
   outputTree_s->Branch("esEffSigmaRR", &out_esEffSigmaRR_s );
-  outputTree_s->Branch("esEnergy/SCRawE", &out_EsEnergy_ov_scRawEnergy_s );
+  outputTree_s->Branch("esEnergyOverRawE", &out_EsEnergy_ov_scRawEnergy_s );
   outputTree_s->Branch("mvares",&out_mvares_s);
   outputTree_s->Branch("weight",&out_weight_s);
   outputTree_s->Branch("pt", &out_Pt_s );
@@ -155,13 +155,13 @@ void evaluateMVA(){
   outputTree_b->Branch("covIEtaIPhi",&out_covIEtaIPhi_b);
   outputTree_b->Branch("s4",&out_s4_b);
   // outputTree_b->Branch("phoIso03",&out_isoPhotons_b);
-  outputTree_b->Branch("isoPhoCorrMax2p5", &out_isoPhoCorrMax2p5_b );
+  outputTree_b->Branch("phoIsoCorr", &out_phoIsoCorr_b );
   outputTree_b->Branch("chgIsoWrtChosenVtx",&out_isoChargedHad_b);
   outputTree_b->Branch("chgIsoWrtWorstVtx",&out_chgIsoWrtWorstVtx_b);
   outputTree_b->Branch("scEta",&out_scEta_b);
   outputTree_b->Branch("rho",&out_rho_b);
   outputTree_b->Branch("esEffSigmaRR", &out_esEffSigmaRR_b );
-  outputTree_b->Branch("esEnergy/SCRawE", &out_EsEnergy_ov_scRawEnergy_b );
+  outputTree_b->Branch("esEnergyOverRawE", &out_EsEnergy_ov_scRawEnergy_b );
   outputTree_b->Branch("mvares",&out_mvares_b);
   outputTree_b->Branch("weight",&out_weight_b);
   outputTree_b->Branch("pt", &out_Pt_b );
@@ -184,13 +184,13 @@ void evaluateMVA(){
   photonIdMva_sig_->AddVariable("covIEtaIPhi",&out_covIEtaIPhi_s);
   photonIdMva_sig_->AddVariable("s4",&out_s4_s);
   // photonIdMva_sig_->AddVariable("phoIso03",&out_isoPhotons_s);
-  photonIdMva_sig_->AddVariable("isoPhoCorrMax2p5",&out_isoPhotons_s);
+  photonIdMva_sig_->AddVariable("phoIsoCorr",&out_isoPhotons_s);
   photonIdMva_sig_->AddVariable("chgIsoWrtChosenVtx",&out_isoChargedHad_s);
   photonIdMva_sig_->AddVariable("chgIsoWrtWorstVtx",&out_chgIsoWrtWorstVtx_s);
   photonIdMva_sig_->AddVariable("scEta",&out_scEta_s);
   photonIdMva_sig_->AddVariable("rho",&out_rho_s);
   photonIdMva_sig_->AddVariable("esEffSigmaRR", &out_esEffSigmaRR_s );
-  photonIdMva_sig_->AddVariable("esEnergy/SCRawE", &out_EsEnergy_ov_scRawEnergy_s );
+  photonIdMva_sig_->AddVariable("esEnergyOverRawE", &out_EsEnergy_ov_scRawEnergy_s );
 
   t_sig->SetBranchAddress("SCRawE",&out_SCRawE_s);
   t_sig->SetBranchAddress("r9",&out_full_r9_s);
@@ -200,7 +200,7 @@ void evaluateMVA(){
   t_sig->SetBranchAddress("covIEtaIPhi",&out_covIEtaIPhi_s);
   t_sig->SetBranchAddress("s4",&out_s4_s);
   // t_sig->SetBranchAddress("phoIso03",&out_isoPhotons_s);
-  t_sig->SetBranchAddress("isoPhoCorrMax2p5",&out_isoPhoCorrMax2p5_s);
+  t_sig->SetBranchAddress("phoIsoCorr",&out_phoIsoCorr_s);
   t_sig->SetBranchAddress("chgIsoWrtChosenVtx",&out_isoChargedHad_s);
   t_sig->SetBranchAddress("chgIsoWrtWorstVtx",&out_chgIsoWrtWorstVtx_s);
   t_sig->SetBranchAddress("scEta",&out_scEta_s);
@@ -224,13 +224,13 @@ void evaluateMVA(){
   photonIdMva_bkg_->AddVariable("covIEtaIPhi",&out_covIEtaIPhi_b);
   photonIdMva_bkg_->AddVariable("s4",&out_s4_b);
   // photonIdMva_bkg_->AddVariable("phoIso03",&out_isoPhotons_b);
-  photonIdMva_bkg_->AddVariable("isoPhoCorrMax2p5",&out_isoPhotons_b);
+  photonIdMva_bkg_->AddVariable("phoIsoCorr",&out_isoPhotons_b);
   photonIdMva_bkg_->AddVariable("chgIsoWrtChosenVtx",&out_isoChargedHad_b);
   photonIdMva_bkg_->AddVariable("chgIsoWrtWorstVtx",&out_chgIsoWrtWorstVtx_b);
   photonIdMva_bkg_->AddVariable("scEta",&out_scEta_b);
   photonIdMva_bkg_->AddVariable("rho",&out_rho_b);
   photonIdMva_bkg_->AddVariable("esEffSigmaRR", &out_esEffSigmaRR_b );
-  photonIdMva_bkg_->AddVariable("esEnergy/SCRawE", &out_EsEnergy_ov_scRawEnergy_b );
+  photonIdMva_bkg_->AddVariable("esEnergyOverRawE", &out_EsEnergy_ov_scRawEnergy_b );
 
   t_bkg->SetBranchAddress("SCRawE",&out_SCRawE_b);
   t_bkg->SetBranchAddress("r9",&out_full_r9_b);
@@ -240,7 +240,7 @@ void evaluateMVA(){
   t_bkg->SetBranchAddress("covIEtaIPhi",&out_covIEtaIPhi_b);
   t_bkg->SetBranchAddress("s4",&out_s4_b);
   // t_bkg->SetBranchAddress("phoIso03",&out_isoPhotons_b);
-  t_bkg->SetBranchAddress("isoPhoCorrMax2p5",&out_isoPhoCorrMax2p5_b);
+  t_bkg->SetBranchAddress("phoIsoCorr",&out_phoIsoCorr_b);
   t_bkg->SetBranchAddress("chgIsoWrtChosenVtx",&out_isoChargedHad_b);
   t_bkg->SetBranchAddress("chgIsoWrtWorstVtx",&out_chgIsoWrtWorstVtx_b);
   t_bkg->SetBranchAddress("scEta",&out_scEta_b);
@@ -251,13 +251,13 @@ void evaluateMVA(){
   t_bkg->SetBranchAddress("pt", &out_Pt_b );
   t_bkg->SetBranchAddress("phi", &out_Phi_b );
   t_bkg->SetBranchAddress("eta", &out_Eta_b );
-  t_bkg->SetBranchAddress("PtvsEtaWeight", &out_PtvsEtaWeight_b );
+  // t_bkg->SetBranchAddress("PtvsEtaWeight", &out_PtvsEtaWeight_b );
   // t_bkg->SetBranchAddress("rhoRew", &out_RhoRew_b );
   t_bkg->SetBranchAddress("nvtx", &out_nvtx_b );
   t_bkg->SetBranchAddress("npu", &out_npu_b );
 
-  photonIdMva_sig_->BookMVA( "BDT", "Moriond17/weights/HggPhoId_endcap_Moriond2017_wRhoRew.weights.xml");
-  photonIdMva_bkg_->BookMVA( "BDT", "Moriond17/weights/HggPhoId_endcap_Moriond2017_wRhoRew.weights.xml");
+  photonIdMva_sig_->BookMVA( "BDT", "WithIsoCorr/weights/HggPhoId_94X_endcap_BDT.weights.xml");
+  photonIdMva_bkg_->BookMVA( "BDT", "WithIsoCorr/weights/HggPhoId_94X_endcap_BDT.weights.xml");
 
   for(int i = 0; i < nEntries_sig; i++){
     t_sig->GetEntry(i);

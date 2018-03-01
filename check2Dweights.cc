@@ -24,7 +24,7 @@
 #include <algorithm>
 
 void plotAnyVariable(TCanvas * can, TCut baseCut, TCut twoDwCut, string varName, TLegend * legend, string label, int nbins, float min, float max, double maxHisto){
-  TFile *File = TFile::Open("/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/January2018_v1/January06/output_SinglePhoton_Train.root");
+  TFile *File = TFile::Open("/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/MCv2_February2018/February03/Mass95/output_SinglePhoton_Train.root");
 
   TTree *t_FakePhotons = (TTree*)File->Get("fakePhotons");
   TTree *t_PromtPhotons = (TTree*)File->Get("promptPhotons");
@@ -129,9 +129,9 @@ void check2Dweights(){
   bool doEB = false;
   bool doEE = true;
 
-  string tmp = "_92X_allPho_valid_test";
-  if(doEE) tmp = "_92X_EEPho_Hgg_newMC_test";
-  if(doEB) tmp = "_92X_EBPho_Hgg_newMC_test";
+  string tmp = "_94X_allPho_valid";
+  if(doEE) tmp = "_94X_EEPho_Hgg";
+  if(doEB) tmp = "_94X_EBPho_Hgg";
 
 
   if(plot_pT){

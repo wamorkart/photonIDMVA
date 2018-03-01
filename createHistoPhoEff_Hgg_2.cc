@@ -28,11 +28,11 @@
 
 void saveHistoToFile(){
 
-  string fileName_EB = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/January2018_v1/January06/mvares_Hgg_phoId_92X_EB_woisocor.root";
-  string fileName_EB_old = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/January2018_v1/January06/mvares_Hgg_phoId_92X_EB_wisocor.root";
+  string fileName_EB = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/MCv2_February2018/February03/Mass95/mvares_Hgg_phoId_94X_EB_woIsocorr.root";
+  string fileName_EB_old = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/MCv2_February2018/February03/Mass95/mvares_Hgg_phoId_92X_EB_woIsocorr.root";
 
-  string fileName_EE = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/January2018_v1/January06/mvares_Hgg_phoId_92X_EE_woisocor.root";
-  string fileName_EE_old = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/January2018_v1/January06/mvares_Hgg_phoId_92X_EE_wisocor.root";
+  string fileName_EE = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/MCv2_February2018/February03/Mass95/mvares_Hgg_phoId_94X_EE_woIsocorr.root";
+  string fileName_EE_old = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/MCv2_February2018/February03/Mass95/mvares_Hgg_phoId_92X_EE_woIsocorr.root";
 
   // Reading tree for EB
   TFile *file_EB = new TFile(fileName_EB.c_str());
@@ -46,23 +46,23 @@ void saveHistoToFile(){
   // EB, no mvares cut
   TH1F * h_pt_EB_s    = new TH1F ("h_pt_EB_s","h_pt_EB_s",25,0,250);
   TH1F * h_pt_EB_b    = new TH1F ("h_pt_EB_b","h_pt_EB_b",25,0,250);
-  TH1F * h_nVtx_EB_s  = new TH1F ("h_nVtx_EB_s","h_nVtx_EB_s",40,0,40);
-  TH1F * h_nVtx_EB_b  = new TH1F ("h_nVtx_EB_b","h_nVtx_EB_b",40,0,40);
+  TH1F * h_nVtx_EB_s  = new TH1F ("h_nVtx_EB_s","h_nVtx_EB_s",80,0,80);
+  TH1F * h_nVtx_EB_b  = new TH1F ("h_nVtx_EB_b","h_nVtx_EB_b",80,0,80);
   TH1F * h_eta_EB_s   = new TH1F ("h_eta_EB_s","h_eta_EB_s",50,-2.5,2.5);
   TH1F * h_eta_EB_b   = new TH1F ("h_eta_EB_b","h_eta_EB_b",50,-2.5,2.5);
 
   TH1F * h_pt_EB_old_s    = new TH1F ("h_pt_EB_old_s","h_pt_EB_old_s",25,0,250);
   TH1F * h_pt_EB_old_b    = new TH1F ("h_pt_EB_old_b","h_pt_EB_old_b",25,0,250);
-  TH1F * h_nVtx_EB_old_s  = new TH1F ("h_nVtx_EB_old_s","h_nVtx_EB_old_s",40,0,40);
-  TH1F * h_nVtx_EB_old_b  = new TH1F ("h_nVtx_EB_old_b","h_nVtx_EB_old_b",40,0,40);
+  TH1F * h_nVtx_EB_old_s  = new TH1F ("h_nVtx_EB_old_s","h_nVtx_EB_old_s",80,0,80);
+  TH1F * h_nVtx_EB_old_b  = new TH1F ("h_nVtx_EB_old_b","h_nVtx_EB_old_b",80,0,80);
   TH1F * h_eta_EB_old_s   = new TH1F ("h_eta_EB_old_s","h_eta_EB_old_s",50,-2.5,2.5);
   TH1F * h_eta_EB_old_b   = new TH1F ("h_eta_EB_old_b","h_eta_EB_old_b",50,-2.5,2.5);
 
-  TCut EB_s = "(mvares>-2 && abs(scEta)<1.5 && pt > 18)";
-  TCut EB_b = "(mvares>-2 && abs(scEta)<1.5 && pt > 18)";
+  TCut EB_s = "(mvares>-1 && abs(scEta)<1.5 && pt > 18)";
+  TCut EB_b = "(mvares>-1 && abs(scEta)<1.5 && pt > 18)";
 
-  TCut EB_old_s = "(mvares>-2 && abs(scEta)<1.5 && pt > 18)";
-  TCut EB_old_b = "(mvares>-2 && abs(scEta)<1.5 && pt > 18)";
+  TCut EB_old_s = "(mvares>-1 && abs(scEta)<1.5 && pt > 18)";
+  TCut EB_old_b = "(mvares>-1 && abs(scEta)<1.5 && pt > 18)";
 
   h_pt_EB_s->Sumw2();
   h_pt_EB_b->Sumw2();
@@ -95,24 +95,24 @@ void saveHistoToFile(){
   //EB, mvares cut
   TH1F * h_pt_EB_Cut_s    = new TH1F ("h_pt_EB_Cut_s","h_pt_EB_Cut_s",25,0,250);
   TH1F * h_pt_EB_Cut_b    = new TH1F ("h_pt_EB_Cut_b","h_pt_EB_Cut_b",25,0,250);
-  TH1F * h_nVtx_EB_Cut_s  = new TH1F ("h_nVtx_EB_Cut_s","h_nVtx_EB_Cut_s",40,0,40);
-  TH1F * h_nVtx_EB_Cut_b  = new TH1F ("h_nVtx_EB_Cut_b","h_nVtx_EB_Cut_b",40,0,40);
+  TH1F * h_nVtx_EB_Cut_s  = new TH1F ("h_nVtx_EB_Cut_s","h_nVtx_EB_Cut_s",80,0,80);
+  TH1F * h_nVtx_EB_Cut_b  = new TH1F ("h_nVtx_EB_Cut_b","h_nVtx_EB_Cut_b",80,0,80);
   TH1F * h_eta_EB_Cut_s   = new TH1F ("h_eta_EB_Cut_s","h_eta_EB_Cut_s",50,-2.5,2.5);
   TH1F * h_eta_EB_Cut_b   = new TH1F ("h_eta_EB_Cut_b","h_eta_EB_Cut_b",50,-2.5,2.5);
 
   TH1F * h_pt_EB_old_Cut_s    = new TH1F ("h_pt_EB_old_Cut_s","h_pt_EB_old_Cut_s",25,0,250);
   TH1F * h_pt_EB_old_Cut_b    = new TH1F ("h_pt_EB_old_Cut_b","h_pt_EB_old_Cut_b",25,0,250);
-  TH1F * h_nVtx_EB_old_Cut_s  = new TH1F ("h_nVtx_EB_old_Cut_s","h_nVtx_EB_old_Cut_s",40,0,40);
-  TH1F * h_nVtx_EB_old_Cut_b  = new TH1F ("h_nVtx_EB_old_Cut_b","h_nVtx_EB_old_Cut_b",40,0,40);
+  TH1F * h_nVtx_EB_old_Cut_s  = new TH1F ("h_nVtx_EB_old_Cut_s","h_nVtx_EB_old_Cut_s",80,0,80);
+  TH1F * h_nVtx_EB_old_Cut_b  = new TH1F ("h_nVtx_EB_old_Cut_b","h_nVtx_EB_old_Cut_b",80,0,80);
   TH1F * h_eta_EB_old_Cut_s   = new TH1F ("h_eta_EB_old_Cut_s","h_eta_EB_old_Cut_s",50,-2.5,2.5);
   TH1F * h_eta_EB_old_Cut_b   = new TH1F ("h_eta_EB_old_Cut_b","h_eta_EB_old_Cut_b",50,-2.5,2.5);
 
-  //WP 95%
-  TCut EB_Cut_s = "(mvares>0.27 && abs(scEta)<1.5 && pt > 18)";
-  TCut EB_Cut_b = "(mvares>0.27 && abs(scEta)<1.5 && pt > 18)";
+  //WP 90%
+  TCut EB_Cut_s = "(mvares>0.09 && abs(scEta)<1.5 && pt > 18)";
+  TCut EB_Cut_b = "(mvares>0.09 && abs(scEta)<1.5 && pt > 18)";
 
-  TCut EB_old_Cut_s = "(mvares>0.43 && abs(scEta)<1.5 && pt > 18)";
-  TCut EB_old_Cut_b = "(mvares>0.43 && abs(scEta)<1.5 && pt > 18)";
+  TCut EB_old_Cut_s = "(mvares>0.30 && abs(scEta)<1.5 && pt > 18)";
+  TCut EB_old_Cut_b = "(mvares>0.30 && abs(scEta)<1.5 && pt > 18)";
 
   h_pt_EB_Cut_s->Sumw2();
   h_pt_EB_Cut_b->Sumw2();
@@ -156,15 +156,15 @@ void saveHistoToFile(){
   // EE, no mvares cut
   TH1F * h_pt_EE_s    = new TH1F ("h_pt_EE_s","h_pt_EE_s",25,0,250);
   TH1F * h_pt_EE_b    = new TH1F ("h_pt_EE_b","h_pt_EE_b",25,0,250);
-  TH1F * h_nVtx_EE_s  = new TH1F ("h_nVtx_EE_s","h_nVtx_EE_s",40,0,40);
-  TH1F * h_nVtx_EE_b  = new TH1F ("h_nVtx_EE_b","h_nVtx_EE_b",40,0,40);
+  TH1F * h_nVtx_EE_s  = new TH1F ("h_nVtx_EE_s","h_nVtx_EE_s",80,0,80);
+  TH1F * h_nVtx_EE_b  = new TH1F ("h_nVtx_EE_b","h_nVtx_EE_b",80,0,80);
   TH1F * h_eta_EE_s   = new TH1F ("h_eta_EE_s","h_eta_EE_s",50,-2.5,2.5);
   TH1F * h_eta_EE_b   = new TH1F ("h_eta_EE_b","h_eta_EE_b",50,-2.5,2.5);
 
   TH1F * h_pt_EE_old_s    = new TH1F ("h_pt_EE_old_s","h_pt_EE_old_s",25,0,250);
   TH1F * h_pt_EE_old_b    = new TH1F ("h_pt_EE_old_b","h_pt_EE_old_b",25,0,250);
-  TH1F * h_nVtx_EE_old_s  = new TH1F ("h_nVtx_EE_old_s","h_nVtx_EE_old_s",40,0,40);
-  TH1F * h_nVtx_EE_old_b  = new TH1F ("h_nVtx_EE_old_b","h_nVtx_EE_old_b",40,0,40);
+  TH1F * h_nVtx_EE_old_s  = new TH1F ("h_nVtx_EE_old_s","h_nVtx_EE_old_s",80,0,80);
+  TH1F * h_nVtx_EE_old_b  = new TH1F ("h_nVtx_EE_old_b","h_nVtx_EE_old_b",80,0,80);
   TH1F * h_eta_EE_old_s   = new TH1F ("h_eta_EE_old_s","h_eta_EE_old_s",50,-2.5,2.5);
   TH1F * h_eta_EE_old_b   = new TH1F ("h_eta_EE_old_b","h_eta_EE_old_b",50,-2.5,2.5);
 
@@ -182,11 +182,11 @@ void saveHistoToFile(){
   h_eta_EE_old_s->Sumw2();
   h_eta_EE_old_b->Sumw2();
 
-  TCut EE_s = "(mvares>-2 && abs(scEta)>1.5 && pt > 18)";
-  TCut EE_b = "(mvares>-2 && abs(scEta)>1.5 && pt > 18)";
+  TCut EE_s = "(mvares>-1 && abs(scEta)>1.5 && pt > 18)";
+  TCut EE_b = "(mvares>-1 && abs(scEta)>1.5 && pt > 18)";
 
-  TCut EE_old_s = "(mvares>-2 && abs(scEta)>1.5 && pt > 18)";
-  TCut EE_old_b = "(mvares>-2 && abs(scEta)>1.5 && pt > 18)";
+  TCut EE_old_s = "(mvares>-1 && abs(scEta)>1.5 && pt > 18)";
+  TCut EE_old_b = "(mvares>-1 && abs(scEta)>1.5 && pt > 18)";
 
   t_EE_s->Draw("pt>>h_pt_EE_s",EE_s,"goff");
   t_EE_b->Draw("pt>>h_pt_EE_b",EE_b,"goff");
@@ -205,24 +205,24 @@ void saveHistoToFile(){
   //EE, mvares cut
   TH1F * h_pt_EE_Cut_s    = new TH1F ("h_pt_EE_Cut_s","h_pt_EE_Cut_s",25,0,250);
   TH1F * h_pt_EE_Cut_b    = new TH1F ("h_pt_EE_Cut_b","h_pt_EE_Cut_b",25,0,250);
-  TH1F * h_nVtx_EE_Cut_s  = new TH1F ("h_nVtx_EE_Cut_s","h_nVtx_EE_Cut_s",40,0,40);
-  TH1F * h_nVtx_EE_Cut_b  = new TH1F ("h_nVtx_EE_Cut_b","h_nVtx_EE_Cut_b",40,0,40);
+  TH1F * h_nVtx_EE_Cut_s  = new TH1F ("h_nVtx_EE_Cut_s","h_nVtx_EE_Cut_s",80,0,80);
+  TH1F * h_nVtx_EE_Cut_b  = new TH1F ("h_nVtx_EE_Cut_b","h_nVtx_EE_Cut_b",80,0,80);
   TH1F * h_eta_EE_Cut_s   = new TH1F ("h_eta_EE_Cut_s","h_eta_EE_Cut_s",50,-2.5,2.5);
   TH1F * h_eta_EE_Cut_b   = new TH1F ("h_eta_EE_Cut_b","h_eta_EE_Cut_b",50,-2.5,2.5);
 
   TH1F * h_pt_EE_old_Cut_s    = new TH1F ("h_pt_EE_old_Cut_s","h_pt_EE_old_Cut_s",25,0,250);
   TH1F * h_pt_EE_old_Cut_b    = new TH1F ("h_pt_EE_old_Cut_b","h_pt_EE_old_Cut_b",25,0,250);
-  TH1F * h_nVtx_EE_old_Cut_s  = new TH1F ("h_nVtx_EE_old_Cut_s","h_nVtx_EE_old_Cut_s",40,0,40);
-  TH1F * h_nVtx_EE_old_Cut_b  = new TH1F ("h_nVtx_EE_old_Cut_b","h_nVtx_EE_old_Cut_b",40,0,40);
+  TH1F * h_nVtx_EE_old_Cut_s  = new TH1F ("h_nVtx_EE_old_Cut_s","h_nVtx_EE_old_Cut_s",80,0,80);
+  TH1F * h_nVtx_EE_old_Cut_b  = new TH1F ("h_nVtx_EE_old_Cut_b","h_nVtx_EE_old_Cut_b",80,0,80);
   TH1F * h_eta_EE_old_Cut_s   = new TH1F ("h_eta_EE_old_Cut_s","h_eta_EE_old_Cut_s",50,-2.5,2.5);
   TH1F * h_eta_EE_old_Cut_b   = new TH1F ("h_eta_EE_old_Cut_b","h_eta_EE_old_Cut_b",50,-2.5,2.5);
 
   //WP90%
-  TCut EE_Cut_s = "(mvares>0.13 && abs(scEta)>1.5 && pt > 18)";
-  TCut EE_Cut_b = "(mvares>0.13 && abs(scEta)>1.5 && pt > 18)";
+  TCut EE_Cut_s = "(mvares>-0.10 && abs(scEta)>1.5 && pt > 18)";
+  TCut EE_Cut_b = "(mvares>-0.10 && abs(scEta)>1.5 && pt > 18)";
   
-  TCut EE_old_Cut_s = "(mvares>0.23 && abs(scEta)>1.5 && pt > 18)";
-  TCut EE_old_Cut_b = "(mvares>0.23 && abs(scEta)>1.5 && pt > 18)";
+  TCut EE_old_Cut_s = "(mvares>-0.03 && abs(scEta)>1.5 && pt > 18)";
+  TCut EE_old_Cut_b = "(mvares>-0.03 && abs(scEta)>1.5 && pt > 18)";
   
   h_pt_EE_Cut_s->Sumw2();
   h_pt_EE_Cut_b->Sumw2();
@@ -255,15 +255,15 @@ void saveHistoToFile(){
   // effs EB
   TH1F * h_pt_EB_eff_s = new TH1F ("h_pt_EB_eff_s","h_pt_EB_eff_s",25,0,250);
   TH1F * h_pt_EB_eff_b = new TH1F ("h_pt_EB_eff_b","h_pt_EB_eff_b",25,0,250);
-  TH1F * h_nVtx_EB_eff_s = new TH1F ("h_nVtx_EB_eff_s","h_nVtx_EB_eff_s",40,0,40);
-  TH1F * h_nVtx_EB_eff_b = new TH1F ("h_nVtx_EB_eff_b","h_nVtx_EB_eff_b",40,0,40);
+  TH1F * h_nVtx_EB_eff_s = new TH1F ("h_nVtx_EB_eff_s","h_nVtx_EB_eff_s",80,0,80);
+  TH1F * h_nVtx_EB_eff_b = new TH1F ("h_nVtx_EB_eff_b","h_nVtx_EB_eff_b",80,0,80);
   TH1F * h_eta_EB_eff_s = new TH1F ("h_eta_EB_eff_s","h_eta_EB_eff_s",50,-2.5,2.5);
   TH1F * h_eta_EB_eff_b = new TH1F ("h_eta_EB_eff_b","h_eta_EB_eff_b",50,-2.5,2.5);
 
   TH1F * h_pt_EB_old_eff_s = new TH1F ("h_pt_EB_old_eff_s","h_pt_EB_old_eff_s",25,0,250);
   TH1F * h_pt_EB_old_eff_b = new TH1F ("h_pt_EB_old_eff_b","h_pt_EB_old_eff_b",25,0,250);
-  TH1F * h_nVtx_EB_old_eff_s = new TH1F ("h_nVtx_EB_old_eff_s","h_nVtx_EB_old_eff_s",40,0,40);
-  TH1F * h_nVtx_EB_old_eff_b = new TH1F ("h_nVtx_EB_old_eff_b","h_nVtx_EB_old_eff_b",40,0,40);
+  TH1F * h_nVtx_EB_old_eff_s = new TH1F ("h_nVtx_EB_old_eff_s","h_nVtx_EB_old_eff_s",80,0,80);
+  TH1F * h_nVtx_EB_old_eff_b = new TH1F ("h_nVtx_EB_old_eff_b","h_nVtx_EB_old_eff_b",80,0,80);
   TH1F * h_eta_EB_old_eff_s = new TH1F ("h_eta_EB_old_eff_s","h_eta_EB_old_eff_s",50,-2.5,2.5);
   TH1F * h_eta_EB_old_eff_b = new TH1F ("h_eta_EB_old_eff_b","h_eta_EB_old_eff_b",50,-2.5,2.5);
 
@@ -310,15 +310,15 @@ void saveHistoToFile(){
   // effs EE
   TH1F * h_pt_EE_eff_s = new TH1F ("h_pt_EE_eff_s","h_pt_EE_eff_s",25,0,250);
   TH1F * h_pt_EE_eff_b = new TH1F ("h_pt_EE_eff_b","h_pt_EE_eff_b",25,0,250);
-  TH1F * h_nVtx_EE_eff_s = new TH1F ("h_nVtx_EE_eff_s","h_nVtx_EE_eff_s",40,0,40);
-  TH1F * h_nVtx_EE_eff_b = new TH1F ("h_nVtx_EE_eff_b","h_nVtx_EE_eff_b",40,0,40);
+  TH1F * h_nVtx_EE_eff_s = new TH1F ("h_nVtx_EE_eff_s","h_nVtx_EE_eff_s",80,0,80);
+  TH1F * h_nVtx_EE_eff_b = new TH1F ("h_nVtx_EE_eff_b","h_nVtx_EE_eff_b",80,0,80);
   TH1F * h_eta_EE_eff_s = new TH1F ("h_eta_EE_eff_s","h_eta_EE_eff_s",50,-2.5,2.5);
   TH1F * h_eta_EE_eff_b = new TH1F ("h_eta_EE_eff_b","h_eta_EE_eff_b",50,-2.5,2.5);
 
   TH1F * h_pt_EE_old_eff_s = new TH1F ("h_pt_EE_old_eff_s","h_pt_EE_old_eff_s",25,0,250);
   TH1F * h_pt_EE_old_eff_b = new TH1F ("h_pt_EE_old_eff_b","h_pt_EE_old_eff_b",25,0,250);
-  TH1F * h_nVtx_EE_old_eff_s = new TH1F ("h_nVtx_EE_old_eff_s","h_nVtx_EE_old_eff_s",40,0,40);
-  TH1F * h_nVtx_EE_old_eff_b = new TH1F ("h_nVtx_EE_old_eff_b","h_nVtx_EE_old_eff_b",40,0,40);
+  TH1F * h_nVtx_EE_old_eff_s = new TH1F ("h_nVtx_EE_old_eff_s","h_nVtx_EE_old_eff_s",80,0,80);
+  TH1F * h_nVtx_EE_old_eff_b = new TH1F ("h_nVtx_EE_old_eff_b","h_nVtx_EE_old_eff_b",80,0,80);
   TH1F * h_eta_EE_old_eff_s = new TH1F ("h_eta_EE_old_eff_s","h_eta_EE_old_eff_s",50,-2.5,2.5);
   TH1F * h_eta_EE_old_eff_b = new TH1F ("h_eta_EE_old_eff_b","h_eta_EE_old_eff_b",50,-2.5,2.5);
 
@@ -419,10 +419,10 @@ void saveHistoToFile(){
   h_pt_EB_old_eff_b->SetMarkerColor(kRed-9);
   h_pt_EB_old_eff_b->Draw("Psame");
 
-  leg->AddEntry(h_pt_EB_eff_s, "Signal: woisocor","P");
-  leg->AddEntry(h_pt_EB_eff_b, "Bkg : woisocor","P");
-  leg->AddEntry(h_pt_EB_old_eff_s, "Signal : wisocor","P");
-  leg->AddEntry(h_pt_EB_old_eff_b, "Bkg : wisocor","P");
+  leg->AddEntry(h_pt_EB_eff_s, "Signal: 9_4_X","P");
+  leg->AddEntry(h_pt_EB_eff_b, "Bkg : 9_4_X","P");
+  leg->AddEntry(h_pt_EB_old_eff_s, "Signal : 9_2_X","P");
+  leg->AddEntry(h_pt_EB_old_eff_b, "Bkg : 9_2_X","P");
   leg->Draw("same");
 
   can_pt_eff_EB->Update();
@@ -549,11 +549,11 @@ void saveHistoToFile(){
   h_pt_EE_old_eff_b->SetMarkerColor(kRed-9);
   h_pt_EE_old_eff_b->Draw("Psame");
 
-  leg_EE->AddEntry(h_pt_EE_eff_s, "Signal: woisocor","P");
-  leg_EE->AddEntry(h_pt_EE_eff_b, "Bkg : woisocor","P");
+  leg_EE->AddEntry(h_pt_EE_eff_s, "Signal: 9_4_X","P");
+  leg_EE->AddEntry(h_pt_EE_eff_b, "Bkg : 9_4_X","P");
 
-  leg_EE->AddEntry(h_pt_EE_old_eff_s, "Signal : wisocor","P");
-  leg_EE->AddEntry(h_pt_EE_old_eff_b, "Bkg : wisocor","P");
+  leg_EE->AddEntry(h_pt_EE_old_eff_s, "Signal : 9_2_X","P");
+  leg_EE->AddEntry(h_pt_EE_old_eff_b, "Bkg : 9_2_X","P");
 
   leg_EE->Draw("same");
 
