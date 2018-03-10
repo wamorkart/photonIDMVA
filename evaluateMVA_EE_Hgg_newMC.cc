@@ -184,7 +184,7 @@ void evaluateMVA(){
   photonIdMva_sig_->AddVariable("covIEtaIPhi",&out_covIEtaIPhi_s);
   photonIdMva_sig_->AddVariable("s4",&out_s4_s);
   // photonIdMva_sig_->AddVariable("phoIso03",&out_isoPhotons_s);
-  photonIdMva_sig_->AddVariable("phoIsoCorr",&out_isoPhotons_s);
+  photonIdMva_sig_->AddVariable("phoIsoCorr",&out_phoIsoCorr_s);
   photonIdMva_sig_->AddVariable("chgIsoWrtChosenVtx",&out_isoChargedHad_s);
   photonIdMva_sig_->AddVariable("chgIsoWrtWorstVtx",&out_chgIsoWrtWorstVtx_s);
   photonIdMva_sig_->AddVariable("scEta",&out_scEta_s);
@@ -224,7 +224,7 @@ void evaluateMVA(){
   photonIdMva_bkg_->AddVariable("covIEtaIPhi",&out_covIEtaIPhi_b);
   photonIdMva_bkg_->AddVariable("s4",&out_s4_b);
   // photonIdMva_bkg_->AddVariable("phoIso03",&out_isoPhotons_b);
-  photonIdMva_bkg_->AddVariable("phoIsoCorr",&out_isoPhotons_b);
+  photonIdMva_bkg_->AddVariable("phoIsoCorr",&out_phoIsoCorr_b);
   photonIdMva_bkg_->AddVariable("chgIsoWrtChosenVtx",&out_isoChargedHad_b);
   photonIdMva_bkg_->AddVariable("chgIsoWrtWorstVtx",&out_chgIsoWrtWorstVtx_b);
   photonIdMva_bkg_->AddVariable("scEta",&out_scEta_b);
