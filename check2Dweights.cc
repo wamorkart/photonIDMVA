@@ -15,6 +15,7 @@
 #include "TMath.h"
 #include "TCut.h"
 #include "TPaletteAxis.h"
+#include "TLatex.h"
 
 #include <iostream>
 #include <fstream>
@@ -24,7 +25,7 @@
 #include <algorithm>
 
 void plotAnyVariable(TCanvas * can, TCut baseCut, TCut twoDwCut, string varName, TLegend * legend, string label, int nbins, float min, float max, double maxHisto){
-  TFile *File = TFile::Open("/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/MCv2_February2018/February03/Mass95/output_SinglePhoton_Train.root");
+  TFile *File = TFile::Open("/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/MCv2_February2018/April12/mass95/output_SinglePhoton_Train.root");
 
   TTree *t_FakePhotons = (TTree*)File->Get("fakePhotons");
   TTree *t_PromtPhotons = (TTree*)File->Get("promptPhotons");
@@ -82,8 +83,8 @@ void plotAnyVariable(TCanvas * can, TCut baseCut, TCut twoDwCut, string varName,
   }
 
   histo_fake->SetMarkerColor(kRed);
-  histo_fake->SetMarkerStyle(21);
-  histo_fake->SetMarkerSize(0.6);
+  histo_fake->SetMarkerStyle(20);
+  histo_fake->SetMarkerSize(0.7);
 
   histo_fake->SetMaximum(maxValue);
   histo_fake->Draw();
@@ -92,12 +93,12 @@ void plotAnyVariable(TCanvas * can, TCut baseCut, TCut twoDwCut, string varName,
   histo_promt->SetLineWidth(2);
 
   histo_promt->SetMarkerColor(kBlue);
-  histo_promt->SetMarkerStyle(21);
-  histo_promt->SetMarkerSize(0.6);
+  histo_promt->SetMarkerStyle(20);
+  histo_promt->SetMarkerSize(0.7);
 
   histo_promt_with2Dw->SetMarkerColor(kGreen+1);
-  histo_promt_with2Dw->SetMarkerStyle(21);
-  histo_promt_with2Dw->SetMarkerSize(0.6);
+  histo_promt_with2Dw->SetMarkerStyle(20);
+  histo_promt_with2Dw->SetMarkerSize(0.7);
 
   histo_promt->Draw("EPsame");
 
@@ -113,6 +114,11 @@ void plotAnyVariable(TCanvas * can, TCut baseCut, TCut twoDwCut, string varName,
 
   legend->Draw("same");
 
+  TLatex *txt = new TLatex(0.2, 0.9, "");
+  // txt->SetTextSize(0.05);
+  txt->DrawLatexNDC(0.1, 0.91, "CMS #bf{#it{#scale[0.8]{Simulation Preliminary}}}");
+  txt->DrawLatexNDC(0.76, 0.91, "#bf{13 TeV}");
+  txt->Draw("same");
 
   can->Update();
   can->Modified();
@@ -126,8 +132,8 @@ void check2Dweights(){
   bool plot_SCEta = true;
   bool plot_SCERaw = false;
 
-  bool doEB = false;
-  bool doEE = true;
+  bool doEB = true;
+  bool doEE = false;
 
   string tmp = "_94X_allPho_valid";
   if(doEE) tmp = "_94X_EEPho_Hgg";
@@ -211,14 +217,14 @@ void check2Dweights(){
 
     double maxHisto_SCEta = .025;
     if(doEB) maxHisto_SCEta = .03;
-   if(doEE) maxHisto_SCEta = .1;
-
-   // TLegend *legend_SCEta = new TLegend(0.15,0.65,.45,0.90,"","brNDC");
-   TLegend *legend_SCEta = new TLegend(0.15,0.15,.45,0.45,"","brNDC");
+    if(doEE) maxHisto_SCEta = .1;
+    
+    TLegend *legend_SCEta = new TLegend(0.15,0.15,.45,0.45,"","brNDC");
+    // TLegend *legend_SCEta = new TLegend(0.15,0.65,.45,0.90,"","brNDC");
     legend_SCEta->SetHeader("");
     if(doEE) legend_SCEta->SetHeader("EE");
     if(doEB) legend_SCEta->SetHeader("EB");
-
+    
     legend_SCEta->SetBorderSize(0);
     legend_SCEta->SetFillStyle(0);
     legend_SCEta->SetTextFont(42);
@@ -236,6 +242,3 @@ void check2Dweights(){
 
 
 }
-
-
-

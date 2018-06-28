@@ -99,12 +99,12 @@ void TMVAClassification_preSelCuts_Run2_EB( TString myMethodList = "" )
    // --- Here the preparation phase begins
 
    // Create a ROOT output file where TMVA will store ntuples, histograms, etc.
-   TString outfileName( "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/MCv2_February2018/February03/Mass95/HggPhotonID_94X_barrel_woIsocor.root" );
+   TString outfileName( "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/MCv2_February2018/April12/mass95/HggPhotonID_94X_barrel_revised.root" );
    TFile* outputFile = TFile::Open( outfileName, "RECREATE" );
 
    TMVA::Factory *factory = new TMVA::Factory( "HggPhoId_94X_barrel", outputFile, "!V:!Silent:Color:DrawProgressBar:Transformations=I;D;P;G,D:AnalysisType=Classification" );
   
-   TMVA::DataLoader *dataloader = new TMVA::DataLoader("dataset");
+   TMVA::DataLoader *dataloader = new TMVA::DataLoader("Hgg_Revised");
 
    dataloader->AddVariable( "SCRawE", 'F' );  
    dataloader->AddVariable( "r9", 'F' );
@@ -120,7 +120,7 @@ void TMVAClassification_preSelCuts_Run2_EB( TString myMethodList = "" )
    dataloader->AddVariable( "scEta", 'F' );
    dataloader->AddVariable( "rho", 'F' );  
 
-   TString fname = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/MCv2_February2018/February03/Mass95/output_SinglePhoton_Train.root";
+   TString fname = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/MCv2_February2018/April12/mass95/output_SinglePhoton_Train.root";
    TFile *input = TFile::Open( fname );                 
    TTree *signal     = (TTree*)input->Get("promptPhotons");     
    TTree *background = (TTree*)input->Get("fakePhotons");   
