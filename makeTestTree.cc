@@ -26,8 +26,8 @@
 
 void makeTestTree(){
 
-  string FileName = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/MCv2_February2018/February03/Mass95/output_GJets_2017v2_mass95.root";
-  string FileNameTest = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/MCv2_February2018/February03/Mass95/output_SinglePhoton_Test.root";
+  string FileName = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/MCv2_February2018/April12/mass95/output_GJets_combined_Hgg.root";
+  string FileNameTest = "/eos/user/k/kmondal/public/FLASHgg/PhotonIDMVA/RunIIFall17/MCv2_February2018/April12/mass95/output_SinglePhoton_Test.root";
 
   TFile fileIn("Weights_PtVSeta_Hgg_Gjets_all.root");
 
