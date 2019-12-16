@@ -9,7 +9,12 @@ cp /tmp/MYPROXY ~/
 export X509_USER_PROXY=~/MYPROXY
 fggRunJobs.py --load Taggers/test/H4G_2016_newCatalog/Bkg_Jsons/H4G_Bkg_forMVATraining.json -D -P -n 500 -d outDir/ -x cmsRun Taggers/test/singlePhotonViewDumper_cfg.py -q workday --no-copy-proxy --stage-to $PATH TO WHERE YOU WANT TO STORE NTUPLES$
 ```
-Once these jobs have finished successfully, we can proceed to perform the training. The steps for that are outlined below:
+Once these jobs have finished successfully, we can proceed to perform the training. In order to perform the training we would need to clone the photonIDMVA repository first. This can be done outside of flashgg.
+```
+git clone git@github.com:wamorkart/photonIDMVA.git
+```
+The steps for the training are outlined below:
+
 
 ## MVA part
 #### Pt and eta reweight:
